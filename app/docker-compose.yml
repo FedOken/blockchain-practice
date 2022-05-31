@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  go:
+    build:
+      context: .docker
+      args:
+        ENV_WORK_DIR: ${ENV_WORK_DIR}
+    environment:
+      ENV_WORK_DIR: ${ENV_WORK_DIR}
+    volumes:
+      - .:${ENV_WORK_DIR}
+      - ../pkg:/go/pkg
+    command: ${ENV_WORK_DIR}/.docker/scripts/run-container.sh
+    tty: true
